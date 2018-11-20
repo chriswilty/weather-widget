@@ -1,0 +1,22 @@
+.dots {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dot-box {
+  padding: 5px;
+}
+
+.dot {
+  margin: 0;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: #666666;
+}
+.dot-box.selected .dot {
+  background-color: #cccccc;
+}

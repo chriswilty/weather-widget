@@ -1,0 +1,27 @@
+.loading {
+  display: flex;
+}
+
+i.spinner,
+i.spinner::before {
+  width: 48px;
+  height: 48px;
+}
+i.spinner::before {
+  content: '';
+  display: inline-block;
+  border: 6px solid #666666;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: rotate 1.0s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

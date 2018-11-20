@@ -1,0 +1,15 @@
+.temperature {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.min, .max {
+  font-size: 12px;
+}
+
+.current {
+  font-size: 36px;
+}
