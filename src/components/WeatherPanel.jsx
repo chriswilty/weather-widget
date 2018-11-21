@@ -7,7 +7,7 @@ import 'styles/icons/owfont-regular.css';
 import './WeatherPanel.css';
 
 const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
-  console.log(`locations=${locations} currentIndex=${currentIndex}`);
+  console.log(`location ${currentIndex + 1} of ${locations.length} selected`);
   const { location, weather, temperature } = locations[currentIndex];
 
   return (
@@ -16,7 +16,7 @@ const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
       <WeatherIcon iconName={weather} />
       <Temperature {...temperature} />
       <Dots
-        count={locations.length}
+        locations={locations}
         currentIndex={currentIndex}
         onSelected={setLocation}
       />
