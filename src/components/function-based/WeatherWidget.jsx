@@ -14,29 +14,22 @@ const WeatherWidget = () => {
   const [ locations, setLocations ] = useState([]);
   const [ currentLocation, setCurrentLocation ] = useState(null);
 
-  useEffect(async () => {
-    const data = await fetchData();
-    setLocations(data);
-    setCurrentLocation(0);
-  }, []); // Only runs on mount! MAAAGIC
+  useEffect(() => {
+    fetchData().then(data => {
+      setLocations(data);
+      setCurrentLocation(0);
+    });
+  }, []); // Only runs on mount... MAAAGIC :|
 
-  useEffect(
-    () => {
-      const timeoutId = setTimeout(() => {
-          if (currentLocation !== null) {
-            setCurrentLocation(
-              (currentLocation + 1) % locations.length
-            );
-          }
-        }, 2500
-      );
-      console.log(`starting new timer ${timeoutId}`);
+  useEffect(() => {
+      const timerId = setTimeout(incrementLocation, 2500);
+      logWithTime(`starting new timer ${timerId}`);
       return () => {
-        console.log(`clearing timer ${timeoutId}`);
-        clearTimeout(timeoutId);
+        logWithTime(`clearing timer ${timerId}`);
+        clearInterval(timerId);
       }
     },
-    [currentLocation] // Only runs when currentLocation has changed
+    [currentLocation]
   );
 
   const fetchData = async () => {
@@ -45,9 +38,16 @@ const WeatherWidget = () => {
     return weatherData.slice();
   };
 
+  const incrementLocation = () =>
+    currentLocation !== null &&
+    setCurrentLocation((currentLocation + 1) % locations.length);
+
+  const logWithTime = message =>
+    console.log(`${new Date().toLocaleTimeString()} ${message}`);
+
   return (
     <div className="weather-widget">
-      { locations.length === 0
+      { locations.length === 0 || currentLocation === null
         ? <Loading />
         : <WeatherPanel
             locations={locations}

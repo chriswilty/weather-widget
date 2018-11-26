@@ -2,17 +2,18 @@ import React from 'react';
 
 import Dots from 'components/Dots';
 import Temperature from 'components/Temperature';
+import Wind from 'components/Wind';
 
 import 'styles/icons/owfont-regular.css';
 import './WeatherPanel.css';
 
 const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
-  console.log(`location ${currentIndex + 1} of ${locations.length} selected`);
-  const { location, weather, temperature } = locations[currentIndex];
+  const { location, weather, temperature, wind } = locations[currentIndex];
 
   return (
     <>
       <Location name={location} />
+      <Wind {...wind} />
       <WeatherIcon iconName={weather} />
       <Temperature {...temperature} />
       <Dots
