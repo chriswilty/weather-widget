@@ -26,7 +26,7 @@ const WeatherWidget = () => {
       logWithTime(`starting new timer ${timerId}`);
       return () => {
         logWithTime(`clearing timer ${timerId}`);
-        clearInterval(timerId);
+        clearTimeout(timerId);
       }
     },
     [currentLocation]
