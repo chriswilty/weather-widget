@@ -1,24 +1,28 @@
 import { useState, useEffect } from 'react';
 
+const logWithTime = message => console.log(`${new Date().toLocaleTimeString()} ${message}`);
+
 /**
   Interval timer hook.
   <p>
     Takes as input args an interval in milliseconds, and a callback supplier
     which will be invoked on start and reset to fetch a callback function for
-    the setInterval call.
+    the setInterval call. The latter allows the actual callback to be changed
+    when resetting the timer, e.g. to use some existing state in a value
+    calculation.
   </p><p>
     Timer can be started, reset or stopped using the returned functions.
   </p>
 */
-const useInterval = ({ interval = 3000, callbackSupplier }) => {
+const useInterval = (callbackSupplier, interval) => {
   const [ restarts, setRestarts ] = useState(null);
 
   useEffect(() => {
     if (restarts !== null) {
       const timerId = setInterval(callbackSupplier(), interval);
-      console.log(`starting new timer ${timerId}`);
+      logWithTime(`starting new timer ${timerId}`);
       return () => {
-        console.log(`clearing timer ${timerId}`);
+        logWithTime(`clearing timer ${timerId}`);
         clearInterval(timerId);
       }
     }

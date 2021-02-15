@@ -1,8 +1,8 @@
-import React from 'react';
+//import WeatherWidget from 'components/class-based/WeatherWidget';
+import WeatherWidget from 'components/function-based/WeatherWidgetUsingTimeout';
+//import WeatherWidget from 'components/function-based/WeatherWidgetUsingInterval';
 
-import WeatherWidget from 'components/WeatherWidget';
-
-import 'App.css';
+import './App.css';
 
 const App = () => (
   <div className="app">

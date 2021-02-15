@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import Loading from 'components/Loading';
 import WeatherPanel from 'components/WeatherPanel';
-import weatherData from 'data/weatherData';
+import { fetchData } from 'services/weatherService';
 
-import './WeatherWidget.css';
+import 'components/WeatherWidget.css';
 
-const pause = async (ms) => new Promise(resolve =>
-  setTimeout(resolve, ms)
-);
-
+/**
+ * This version of the widget uses setTimeout to set the weather location every
+ * N seconds, much like in the class version.
+ *
+ * Whenever location is changed - either when the current timeout expires, or
+ * when the user clicks a location dot - a new timeout is started to select the
+ * next location in the list (or return to the start). Any existing timeout is
+ * cleared first - only necessary if the user has selected location
+ * manually.
+ *
+ * Note how much simpler this widget is, compared with the flavour that uses
+ * setInterval with all those hooks... Simpler is usually better!
+ */
 const WeatherWidget = () => {
   const [ locations, setLocations ] = useState([]);
   const [ currentLocation, setCurrentLocation ] = useState(null);
@@ -19,24 +28,18 @@ const WeatherWidget = () => {
       setLocations(data);
       setCurrentLocation(0);
     });
-  }, []); // Only runs on mount... MAAAGIC :|
+  }, []);
 
   useEffect(() => {
       const timerId = setTimeout(incrementLocation, 2500);
       logWithTime(`starting new timer ${timerId}`);
       return () => {
         logWithTime(`clearing timer ${timerId}`);
-        clearTimeout(timerId);
+        clearTimeout(timerId); // no-op if timer already expired
       }
     },
     [currentLocation]
   );
-
-  const fetchData = async () => {
-    // Fake a server call.
-    await pause(1000);
-    return weatherData.slice();
-  };
 
   const incrementLocation = () =>
     currentLocation !== null &&

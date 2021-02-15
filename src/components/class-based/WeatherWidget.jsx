@@ -1,16 +1,11 @@
-import React from 'react';
-
+import { Component } from 'react';
 import Loading from 'components/Loading';
 import WeatherPanel from 'components/WeatherPanel';
-import weatherData from 'data/weatherData';
+import { fetchData } from 'services/weatherService';
 
 import './WeatherWidget.css';
 
-const pause = async (ms) => new Promise(resolve =>
-  setTimeout(resolve, ms)
-);
-
-class WeatherWidget extends React.Component {
+export default class WeatherWidget extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +18,7 @@ class WeatherWidget extends React.Component {
   }
 
   async componentDidMount() {
-    const data = await this.fetchData();
+    const data = await fetchData();
     this.setState({
       locations: data,
       currentLocation: 0
@@ -58,12 +53,6 @@ class WeatherWidget extends React.Component {
     );
   }
 
-  async fetchData() {
-    // Fake a server call.
-    await pause(1000);
-    return weatherData.slice();
-  }
-
   setLocation(index) {
     this.setState({
       currentLocation: index
@@ -87,5 +76,3 @@ class WeatherWidget extends React.Component {
     }
   }
 }
-
-export default WeatherWidget;
