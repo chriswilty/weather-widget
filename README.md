@@ -24,7 +24,10 @@ Any lint errors will be visible in the console.
 If you want to see it as a desktop widget, give OpenFin a try:
 
 ```
+# Run this in one terminal
 yarn start
+
+# Run this in another terminal
 yarn dlx -p openfin-cli openfin --launch --config openfin.json
 ```
 
