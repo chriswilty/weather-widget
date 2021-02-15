@@ -1,6 +1,6 @@
 {
   "name": "hooks-demo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -9,25 +9,15 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "eslint-config-react-app": "^6.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "^4.0.2"
   },
-  "devDependencies": {
-    "eslint-plugin-react-hooks": "^4.2.0"
-  },
   "eslintConfig": {
-    "extends": "react-app",
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "moduleDirectory": [
-            "node_modules",
-            "src/"
-          ]
-        }
-      }
-    }
+    "extends": [
+      "react-app"
+    ]
   },
   "browserslist": [
     "defaults",
