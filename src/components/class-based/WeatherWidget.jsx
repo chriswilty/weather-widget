@@ -15,6 +15,7 @@ export default class WeatherWidget extends Component {
 
     this.setLocation = this.setLocation.bind(this);
     this.timeoutId = null;
+    this.pauseMillis = process.env.REACT_APP_PAUSE || 3000;
   }
 
   async componentDidMount() {
@@ -64,7 +65,7 @@ export default class WeatherWidget extends Component {
       const { currentLocation, locations } = this.state;
       const newLocation = (currentLocation + 1) % locations.length;
       this.setState({ currentLocation: newLocation });
-    }, 2500);
+    }, this.pauseMillis);
     console.log(`starting new timer ${this.timeoutId}`);
   }
 

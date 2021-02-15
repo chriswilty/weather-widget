@@ -7,6 +7,7 @@ import { fetchData } from 'services/weatherService';
 
 import 'components/WeatherWidget.css';
 
+const PAUSE_MILLIS = process.env.REACT_APP_PAUSE || 3000;
 /**
  * This version of the widget uses setInterval to set the weather location every
  * N seconds.
@@ -29,7 +30,7 @@ import 'components/WeatherWidget.css';
  */
 const WeatherWidget = () => {
   const [locations, setLocations] = useState([]);
-  const [currentLocation, initialise, setLocation] = useIntervalCount(2500);
+  const [currentLocation, initialise, setLocation] = useIntervalCount(PAUSE_MILLIS);
 
   useEffect(() => {
     fetchData().then(jsonData => {

@@ -1,5 +1,7 @@
 .loading {
   display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 i.spinner,

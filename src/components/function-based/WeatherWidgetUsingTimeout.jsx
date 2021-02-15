@@ -6,6 +6,8 @@ import { fetchData } from 'services/weatherService';
 
 import 'components/WeatherWidget.css';
 
+const PAUSE_MILLIS = process.env.REACT_APP_PAUSE || 3000;
+
 /**
  * This version of the widget uses setTimeout to set the weather location every
  * N seconds, much like in the class version.
@@ -31,7 +33,7 @@ const WeatherWidget = () => {
   }, []);
 
   useEffect(() => {
-      const timerId = setTimeout(incrementLocation, 2500);
+      const timerId = setTimeout(incrementLocation, PAUSE_MILLIS);
       logWithTime(`starting new timer ${timerId}`);
       return () => {
         logWithTime(`clearing timer ${timerId}`);
