@@ -3,17 +3,19 @@
     "startup_app": {
         "name": "weather-widget",
         "url": "http://localhost:3000",
-        "uuid": "weatherw-1234-5678-9012-34567895",
+        "uuid": "wdgweath-1234-5678-9012-34567890",
         "saveWindowState": false,
         "autoShow": true,
         "defaultWidth": 260,
         "defaultHeight": 320,
+        "minWidth": 260,
+        "minHeight": 320,
         "cornerRounding": {
             "width": 6,
             "height": 6
         },
         "frame": false,
-        "resizable": false,
+        "resizable": true,
         "maximizable": false,
         "minimizable": false,
         "backgroundColor": "#282c34"
