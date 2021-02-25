@@ -1,18 +1,33 @@
-import React from 'react';
+import styled from 'styled-components';
 
-import Dots from 'components/Dots';
-import Temperature from 'components/Temperature';
-import Wind from 'components/Wind';
+import Dots from 'src/components/Dots';
+import Temperature from 'src/components/Temperature';
+import Wind from 'src/components/Wind';
 
-import 'styles/icons/owfont-regular.css';
-import './WeatherPanel.css';
+import 'src/styles/icons/owfont-regular.css';
 
-const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
+const Location = styled.div`
+  font-size: 32px;
+`;
+
+// Note these icons are not accessibility-friendly, as their names are numeric codes.
+// TODO Include weather descriptor in data, and set as title attribute.
+const WeatherIcon = styled(({ className, iconName }) => (
+  <div className={className}>
+    <i className={`owf owf-5x owf-${iconName}`} />
+  </div>
+))`
+  display: flex;
+  flex-direction: row;
+  font-size: 24px;
+`;
+
+const WeatherPanel = ({ className, locations, currentIndex, setLocation }) => {
   const { location, weather, temperature, wind } = locations[currentIndex];
 
   return (
-    <>
-      <Location name={location} />
+    <div className={className} title="weather today">
+      <Location title="location">{location}</Location>
       <Wind {...wind} />
       <WeatherIcon iconName={weather} />
       <Temperature {...temperature} />
@@ -21,18 +36,14 @@ const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
         currentIndex={currentIndex}
         onSelected={setLocation}
       />
-    </>
-  )
+    </div>
+  );
 };
 
-const Location = ({ name }) => (
-  <div className="location">{name}</div>
-);
-
-const WeatherIcon = ({ iconName }) => (
-  <div className="weather-icon">
-    <i className={`owf owf-5x owf-${iconName}`} />
-  </div>
-);
-
-export default WeatherPanel;
+export default styled(WeatherPanel)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+`;

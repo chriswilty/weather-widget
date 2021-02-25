@@ -13,7 +13,9 @@
 /coverage
 
 # production
-/build
+/public/*
+!/public/favicon.ico
+!/public/index.html
 
 # IDEs
 .idea

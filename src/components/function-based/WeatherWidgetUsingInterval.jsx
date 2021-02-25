@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import Loading from 'components/Loading';
-import WeatherPanel from 'components/WeatherPanel';
-import { useIntervalCount } from 'hooks';
-import { fetchData } from 'services/weatherService';
+import Loading from 'src/components/Loading';
+import WeatherPanel from 'src/components/WeatherPanel';
+import { useIntervalCount } from 'src/hooks';
+import fetchData from 'src/services/weatherService';
 
-import 'components/WeatherWidget.css';
+import 'src/components/WeatherWidget.css';
 
-const PAUSE_MILLIS = process.env.REACT_APP_PAUSE || 3000;
+const PAUSE_MILLIS = process.env.LOCATION_PAUSE || 3000;
 /**
  * This version of the widget uses setInterval to set the weather location every
  * N seconds.
@@ -33,10 +33,12 @@ const WeatherWidget = () => {
   const [currentLocation, initialise, setLocation] = useIntervalCount(PAUSE_MILLIS);
 
   useEffect(() => {
-    fetchData().then(jsonData => {
+    const { dataPromise, cancel } = fetchData();
+    dataPromise.then(jsonData => {
       setLocations(jsonData);
       initialise(jsonData.length);
-    }); // would need error handling here, if firing real request
+    });
+    return cancel;
   }, []);
 
   return (

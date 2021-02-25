@@ -1,8 +1,6 @@
-import React from 'react';
-
-import Loading from 'components/Loading';
-import WeatherPanel from 'components/WeatherPanel';
-// import { fetchData } from 'services/weatherService';
+import Loading from 'src/components/Loading';
+import WeatherPanel from 'src/components/WeatherPanel';
+// import { fetchData } from 'src/services/weatherService';
 
 import './WeatherWidget.css';
 

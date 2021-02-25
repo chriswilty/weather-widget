@@ -1,12 +1,10 @@
-import React from 'react';
-
-import './Temperature.css';
+import './Temperature.scss';
 
 const Temperature = ({ minimum, current, maximum }) => (
-  <div className="temperature">
-    <div className="min">{minimum}&deg;</div>
-    <div className="current">{current}&deg;</div>
-    <div className="max">{maximum}&deg;</div>
+  <div className="temperature" title="temperature">
+    <div className="min" title="minimum">{minimum}&deg;</div>
+    <div className="current" title="current">{current}&deg;</div>
+    <div className="max" title="maximum">{maximum}&deg;</div>
   </div>
 );
 

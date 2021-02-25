@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import Loading from 'components/Loading';
-import WeatherPanel from 'components/WeatherPanel';
-import { fetchData } from 'services/weatherService';
+import Loading from 'src/components/Loading';
+import WeatherPanel from 'src/components/WeatherPanel';
+import fetchData from 'src/services/weatherService';
 
-import 'components/WeatherWidget.css';
+import 'src/components/WeatherWidget.css';
 
-const PAUSE_MILLIS = process.env.REACT_APP_PAUSE || 3000;
+const PAUSE_MILLIS = process.env.LOCATION_PAUSE || 3000;
+
+const logWithTime = message => console.log(`${new Date().toLocaleTimeString()} ${message}`);
 
 /**
  * This version of the widget uses setTimeout to set the weather location every
@@ -22,33 +24,37 @@ const PAUSE_MILLIS = process.env.REACT_APP_PAUSE || 3000;
  * setInterval with all those hooks... Simpler is usually better!
  */
 const WeatherWidget = () => {
-  const [ locations, setLocations ] = useState([]);
-  const [ currentLocation, setCurrentLocation ] = useState(null);
+  const [locations, setLocations] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState(null);
 
-  useEffect(() => {
-    fetchData().then(data => {
-      setLocations(data);
-      setCurrentLocation(0);
-    });
-  }, []);
-
-  useEffect(() => {
-      const timerId = setTimeout(incrementLocation, PAUSE_MILLIS);
-      logWithTime(`starting new timer ${timerId}`);
-      return () => {
-        logWithTime(`clearing timer ${timerId}`);
-        clearTimeout(timerId); // no-op if timer already expired
-      }
-    },
-    [currentLocation]
+  const incrementLocation = useCallback(() => {
+      currentLocation !== null &&
+      locations.length &&
+      setCurrentLocation((currentLocation + 1) % locations.length);
+    }, [currentLocation, locations]
   );
 
-  const incrementLocation = () =>
-    currentLocation !== null &&
-    setCurrentLocation((currentLocation + 1) % locations.length);
+  useEffect(() => {
+      const { dataPromise, cancel } = fetchData();
+      dataPromise.then(jsonData => {
+        setLocations(jsonData);
+        setCurrentLocation(0);
+      });
+      return cancel;
+    }, []
+  );
 
-  const logWithTime = message =>
-    console.log(`${new Date().toLocaleTimeString()} ${message}`);
+  useEffect(() => {
+      if (currentLocation !== null) {
+        const timerId = setTimeout(incrementLocation, PAUSE_MILLIS);
+        logWithTime(`starting new timer ${timerId}`);
+        return () => {
+          logWithTime(`clearing timer ${timerId}`);
+          clearTimeout(timerId); // no-op if timer already expired
+        };
+      }
+    }, [currentLocation, incrementLocation]
+  );
 
   return (
     <div className="weather-widget">
@@ -58,8 +64,7 @@ const WeatherWidget = () => {
             locations={locations}
             currentIndex={currentLocation}
             setLocation={setCurrentLocation}
-          />
-      }
+          /> }
     </div>
   );
 };

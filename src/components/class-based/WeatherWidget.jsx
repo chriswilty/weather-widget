@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import Loading from 'components/Loading';
-import WeatherPanel from 'components/WeatherPanel';
-import { fetchData } from 'services/weatherService';
+import Loading from 'src/components/Loading';
+import WeatherPanel from 'src/components/WeatherPanel';
+import fetchData from 'src/services/weatherService';
 
-import './WeatherWidget.css';
+import 'src/components/WeatherWidget.css';
 
 export default class WeatherWidget extends Component {
   constructor(props) {
@@ -15,11 +15,12 @@ export default class WeatherWidget extends Component {
 
     this.setLocation = this.setLocation.bind(this);
     this.timeoutId = null;
-    this.pauseMillis = process.env.REACT_APP_PAUSE || 3000;
+    this.pauseMillis = process.env.LOCATION_PAUSE || 3000;
   }
 
   async componentDidMount() {
-    const data = await fetchData();
+    const { dataPromise } = fetchData();
+    const data = await dataPromise;
     this.setState({
       locations: data,
       currentLocation: 0

@@ -1,31 +1,38 @@
-import React from 'react';
-
+import classNames from 'classnames';
+import { memo, useMemo } from 'react';
 import './Dots.css';
 
 const Dots = ({ locations, currentIndex, onSelected }) => {
-  const dots = locations.map((loc, index) =>
+  const locsAndCallbacks = useMemo(() => locations.map((loc, index) => ({
+    index,
+    location: loc.location,
+    onClick: () => onSelected(index)
+  })), [locations, onSelected]);
+
+  const dots = locsAndCallbacks.map(({ index, location, onClick }) => (
     <Dot
-      key={loc.location}
-      index={index}
-      title={loc.location}
+      key={location}
+      title={location}
       selected={index === currentIndex}
-      clickHandler={onSelected}
+      clickHandler={onClick}
     />
+  ));
+
+  return (
+    <div className="dots" role="group" aria-label="location selector">{dots}</div>
   );
-
-  return (
-    <div className="dots">{dots}</div>
-  )
 };
 
-const Dot = ({ index, selected, title, clickHandler }) => {
-  const handleClick = e => clickHandler(index);
-  const classNames = 'dot-box' + (selected ? ' selected' : '');
-  return (
-    <div className={classNames} title={title} onClick={handleClick}>
-      <div className={"dot"} />
-    </div>
-  )
-};
+const Dot = memo(({ selected, title, clickHandler }) => (
+  <div
+    className={classNames('dot-box', selected && 'selected')}
+    title={title}
+    onClick={clickHandler}
+    role="button"
+    tabIndex={0}
+  >
+    <div className="dot" />
+  </div>
+));
 
 export default Dots;

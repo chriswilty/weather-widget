@@ -1,13 +1,25 @@
-import weatherData from 'data/weatherData';
+import weatherData from 'src/data/weatherData';
 
-const pause = async millisecs => new Promise(resolve =>
-  setTimeout(resolve, millisecs)
-);
-
-const fetchData = async () => {
-  console.log('fetching data ...');
-  await pause(1000);
-  return weatherData.slice();
+const pause = millisecs => {
+  let cancel = () => null;
+  const promise = new Promise((resolve, reject) => {
+    const timerId = setTimeout(resolve, millisecs);
+    cancel = () => {
+      console.log(`cancelling timer ${timerId}`);
+      clearTimeout(timerId);
+      reject(new Error(`cancelled timer ${timerId}`));
+    };
+  });
+  return { promise, cancel };
 };
 
-export { fetchData }
+const fetchData = () => {
+  console.log('faking a data fetch ...');
+  const { promise, cancel } = pause(1000);
+  return {
+    dataPromise: promise.then(() => weatherData.slice()),
+    cancel
+  };
+};
+
+export default fetchData;
