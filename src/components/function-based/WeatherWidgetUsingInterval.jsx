@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Loading from 'src/components/Loading';
 import WeatherPanel from 'src/components/WeatherPanel';
 import { useIntervalCount } from 'src/hooks';
-import fetchData from 'src/services/weatherService';
+import { fetchData } from 'src/services';
 
 import 'src/components/WeatherWidget.css';
 

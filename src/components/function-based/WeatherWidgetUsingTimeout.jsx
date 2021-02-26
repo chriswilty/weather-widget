@@ -2,13 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 
 import Loading from 'src/components/Loading';
 import WeatherPanel from 'src/components/WeatherPanel';
-import fetchData from 'src/services/weatherService';
+import { fetchData } from 'src/services';
+import { debug } from 'src/utils';
 
 import 'src/components/WeatherWidget.css';
 
 const PAUSE_MILLIS = process.env.LOCATION_PAUSE || 3000;
-
-const logWithTime = message => console.log(`${new Date().toLocaleTimeString()} ${message}`);
 
 /**
  * This version of the widget uses setTimeout to set the weather location every
@@ -47,9 +46,9 @@ const WeatherWidget = () => {
   useEffect(() => {
       if (currentLocation !== null) {
         const timerId = setTimeout(incrementLocation, PAUSE_MILLIS);
-        logWithTime(`starting new timer ${timerId}`);
+        debug(`starting new timer ${timerId}`);
         return () => {
-          logWithTime(`clearing timer ${timerId}`);
+          debug(`clearing timer ${timerId}`);
           clearTimeout(timerId); // no-op if timer already expired
         };
       }

@@ -1,7 +1,7 @@
 # Weather Widget
 
 A very simple weather widget, originally intended as a demo of some React Hooks, now expanded into a
-React / Webpack 5 template project.
+React 17 + Webpack 5 + Yarn 2 template project.
 
 Project is built using [Yarn 2 Zero-Installs](https://next.yarnpkg.com/features/zero-installs),
 and bundled using [Webpack 5](https://webpack.js.org/concepts/),
@@ -20,7 +20,7 @@ As this is a Zero-Installs project, simply clone/fork the repo, then:
 yarn start
 ```
 
-to run the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view
+to run the app in development mode. Open [http://localhost:8080](http://localhost:8080) to view
 in a browser.
 
 Under the bonnet, this uses Webpack Dev Server with hot-module reloading via
@@ -28,23 +28,25 @@ Under the bonnet, this uses Webpack Dev Server with hot-module reloading via
 deprecated [react-hot-loader](https://github.com/gaearon/react-hot-loader)). It also uses
 [ESLint](https://eslint.org/docs/user-guide/), so you will see linter warnings in the console.
 
+## Build me!
+
+```
+yarn build
+yarn dlx serve public
+```
+
+Open [http://localhost:5000](http://localhost:5000) to view in a browser.
+
 ## Widget me!
 
 If you want to see it as a desktop widget, give OpenFin a try:
 
 ```
-# Run this in one terminal
+# Start app in one terminal
 yarn start
 
 # Run this in another terminal
 yarn dlx -p openfin-cli openfin --launch --config openfin.json
-```
-
-## Build me!
-
-```
-yarn build
-yarn dlx serve
 ```
 
 ## Learn More
@@ -55,4 +57,5 @@ yarn dlx serve
 
 ## ToDo
 
-- Add and use [FontAwesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react) icons
+- Demo adding and using
+  [FontAwesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react) icons

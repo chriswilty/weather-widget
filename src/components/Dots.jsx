@@ -24,15 +24,14 @@ const Dots = ({ locations, currentIndex, onSelected }) => {
 };
 
 const Dot = memo(({ selected, title, clickHandler }) => (
-  <div
+  <button
     className={classNames('dot-box', selected && 'selected')}
     title={title}
     onClick={clickHandler}
-    role="button"
-    tabIndex={0}
+    type="button"
   >
     <div className="dot" />
-  </div>
+  </button>
 ));
 
 export default Dots;

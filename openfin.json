@@ -2,7 +2,7 @@
     "devtools_port": 9090,
     "startup_app": {
         "name": "weather-widget",
-        "url": "http://localhost:3000",
+        "url": "http://localhost:8080",
         "uuid": "wdgweath-1234-5678-9012-34567890",
         "saveWindowState": false,
         "autoShow": true,

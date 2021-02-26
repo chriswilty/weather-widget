@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import Loading from 'src/components/Loading';
 import WeatherPanel from 'src/components/WeatherPanel';
-import fetchData from 'src/services/weatherService';
+import { fetchData } from 'src/services';
+import { debug } from 'src/utils';
 
 import 'src/components/WeatherWidget.css';
 
@@ -63,16 +64,17 @@ export default class WeatherWidget extends Component {
 
   startTimer() {
     this.timeoutId = setTimeout(() => {
-      const { currentLocation, locations } = this.state;
-      const newLocation = (currentLocation + 1) % locations.length;
-      this.setState({ currentLocation: newLocation });
-    }, this.pauseMillis);
-    console.log(`starting new timer ${this.timeoutId}`);
+        const { currentLocation, locations } = this.state;
+        const newLocation = (currentLocation + 1) % locations.length;
+        this.setState({ currentLocation: newLocation });
+      }, this.pauseMillis
+    );
+    debug(`starting new timer ${this.timeoutId}`);
   }
 
   clearTimer() {
     if (this.timeoutId !== null) {
-      console.log(`clearing timer ${this.timeoutId}`);
+      debug(`clearing timer ${this.timeoutId}`);
       clearTimeout(this.timeoutId);
       this.timeoutId = null;
     }

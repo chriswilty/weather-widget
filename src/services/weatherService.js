@@ -1,11 +1,12 @@
 import weatherData from 'src/data/weatherData';
+import { debug } from 'src/utils';
 
 const pause = millisecs => {
   let cancel = () => null;
   const promise = new Promise((resolve, reject) => {
     const timerId = setTimeout(resolve, millisecs);
     cancel = () => {
-      console.log(`cancelling timer ${timerId}`);
+      debug(`cancelling timer ${timerId}`);
       clearTimeout(timerId);
       reject(new Error(`cancelled timer ${timerId}`));
     };
@@ -14,7 +15,7 @@ const pause = millisecs => {
 };
 
 const fetchData = () => {
-  console.log('faking a data fetch ...');
+  debug('faking a data fetch ...');
   const { promise, cancel } = pause(1000);
   return {
     dataPromise: promise.then(() => weatherData.slice()),

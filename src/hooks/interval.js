@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const logWithTime = message => console.log(`${new Date().toLocaleTimeString()} ${message}`);
+import { debug } from 'src/utils';
 
 /**
   Interval timer hook.
@@ -20,9 +20,9 @@ const useInterval = (callbackSupplier, interval) => {
   useEffect(() => {
     if (restarts !== null) {
       const timerId = setInterval(callbackSupplier(), interval);
-      logWithTime(`starting new timer ${timerId}`);
+      debug(`starting new timer ${timerId}`);
       return () => {
-        logWithTime(`clearing timer ${timerId}`);
+        debug(`clearing timer ${timerId}`);
         clearInterval(timerId);
       }
     }
