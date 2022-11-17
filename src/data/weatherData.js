@@ -2,7 +2,10 @@ const weatherData = [
   {
     id: 2650225,
     location: 'Edinburgh, UK',
-    weather: '321',
+    weather: {
+      code: '321',
+      description: 'shower drizzle'
+    },
     temperature: {
       current: '9',
       minimum: '5.5',
@@ -16,7 +19,10 @@ const weatherData = [
   {
     id: 2643741,
     location: 'London, UK',
-    weather: '801',
+    weather: {
+      code: '801',
+      description: 'few clouds'
+    },
     temperature: {
       current: '16',
       minimum: '13.0',
@@ -30,7 +36,10 @@ const weatherData = [
   {
     id: 2988507,
     location: 'Paris, FR',
-    weather: '202',
+    weather: {
+      code: '202',
+      description: 'thunderstorm with heavy rain'
+    },
     temperature: {
       current: '12',
       minimum: '9.5',
@@ -44,7 +53,10 @@ const weatherData = [
   {
     id: 1850147,
     location: 'Tokyo, JP',
-    weather: '781',
+    weather: {
+      code: '781',
+      description: 'tornado'
+    },
     temperature: {
       current: '18',
       minimum: '12.0',
@@ -58,7 +70,10 @@ const weatherData = [
   {
     id: 658225,
     location: 'Helsinki, FI',
-    weather: '602',
+    weather: {
+      code: '602',
+      description: 'heavy snow'
+    },
     temperature: {
       current: '-10',
       minimum: '-15.0',
@@ -72,7 +87,10 @@ const weatherData = [
   {
     id: 4887398,
     location: 'Chicago, US',
-    weather: '905',
+    weather: {
+      code: '905',
+      description: 'windy'
+    },
     temperature: {
       current: '15',
       minimum: '13.0',

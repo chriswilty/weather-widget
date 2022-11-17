@@ -12,9 +12,9 @@ const Location = styled.div`
 
 // Note these icons are not accessibility-friendly, as their names are numeric codes.
 // TODO Include weather descriptor in data, and set as title attribute.
-const WeatherIcon = styled(({ className, iconName }) => (
+const WeatherIcon = styled(({ className, code, description }) => (
   <div className={className}>
-    <i className={`owf owf-5x owf-${iconName}`} />
+    <i title={description} className={`owf owf-5x owf-${code}`} />
   </div>
 ))`
   display: flex;
@@ -23,13 +23,13 @@ const WeatherIcon = styled(({ className, iconName }) => (
 `;
 
 const WeatherPanel = ({ className, locations, currentIndex, setLocation }) => {
-  const { location, weather, temperature, wind } = locations[currentIndex];
+  const { location, weather: { code, description }, temperature, wind } = locations[currentIndex];
 
   return (
     <div className={className} title="weather today">
       <Location title="location">{location}</Location>
       <Wind {...wind} />
-      <WeatherIcon iconName={weather} />
+      <WeatherIcon {...{ code, description }} />
       <Temperature {...temperature} />
       <Dots
         locations={locations}
