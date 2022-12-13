@@ -2455,6 +2455,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["yallist", "npm:4.0.0"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:4.0.0", {\
+          "packageLocation": "./.yarn/cache/minipass-npm-4.0.0-2520d5ae3c-7a609afbf3.zip/node_modules/minipass/",\
+          "packageDependencies": [\
+            ["minipass", "npm:4.0.0"],\
+            ["yallist", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["minizlib", [\
@@ -2535,7 +2543,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["request", "npm:2.88.2"],\
             ["rimraf", "npm:3.0.2"],\
             ["semver", "npm:7.3.4"],\
-            ["tar", "npm:6.1.0"],\
+            ["tar", "npm:6.1.13"],\
             ["which", "npm:2.0.2"]\
           ],\
           "linkType": "HARD"\
@@ -3168,13 +3176,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["tar", [\
-        ["npm:6.1.0", {\
-          "packageLocation": "./.yarn/cache/tar-npm-6.1.0-21d6116ed9-0638a405b6.zip/node_modules/tar/",\
+        ["npm:6.1.13", {\
+          "packageLocation": "./.yarn/cache/tar-npm-6.1.13-3234e72781-8a278bed12.zip/node_modules/tar/",\
           "packageDependencies": [\
-            ["tar", "npm:6.1.0"],\
+            ["tar", "npm:6.1.13"],\
             ["chownr", "npm:2.0.0"],\
             ["fs-minipass", "npm:2.1.0"],\
-            ["minipass", "npm:3.1.3"],\
+            ["minipass", "npm:4.0.0"],\
             ["minizlib", "npm:2.1.2"],\
             ["mkdirp", "npm:1.0.4"],\
             ["yallist", "npm:4.0.0"]\
