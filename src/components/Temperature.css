@@ -4,24 +4,23 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+	padding: 0 0.75rem;
 }
 .temperature > * {
   width: calc(100%/3);
 }
 
 .min, .max {
-  font-size: 12px;
+  font-size: 1rem;
 }
 .min {
   text-align: left;
-  padding-left: 12px;
 }
 .max {
   text-align: right;
-  padding-right: 12px;
 }
 
 .current {
-  font-size: 36px;
+  font-size: 2rem;
   text-align: center;
 }

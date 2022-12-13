@@ -9,11 +9,15 @@
 !.yarn/sdks
 !.yarn/versions
 
+# parcel
+.parcel-cache
+dist
+
 # testing
 /coverage
 
 # production
-/build
+/public
 
 # IDEs
 .idea

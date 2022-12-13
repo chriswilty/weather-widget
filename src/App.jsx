@@ -1,6 +1,4 @@
-//import WeatherWidget from 'components/class-based/WeatherWidget';
 import WeatherWidget from 'components/function-based/WeatherWidgetUsingTimeout';
-//import WeatherWidget from 'components/function-based/WeatherWidgetUsingInterval';
 
 import './App.css';
 

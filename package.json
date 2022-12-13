@@ -1,23 +1,26 @@
 {
   "name": "hooks-demo",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "private": true,
+  "source": "src/index.html",
+  "alias": {
+    "components/**": "/src/components/$1",
+    "data/**": "/src/data/$1",
+		"hooks/**": "/src/hooks/$1",
+		"services/**": "/src/services/$1",
+		"styles/**": "/src/styles/$1"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "parcel",
+    "build": "parcel build"
   },
   "dependencies": {
-    "eslint-config-react-app": "^6.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "^4.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
+  "devDependencies": {
+    "parcel": "^2.8.1",
+    "process": "^0.11.10"
   },
   "browserslist": [
     "defaults",
