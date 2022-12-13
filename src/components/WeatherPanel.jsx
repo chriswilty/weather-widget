@@ -8,13 +8,13 @@ import 'styles/icons/owfont-regular.css';
 import './WeatherPanel.css';
 
 const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
-  const { location, weather, temperature, wind } = locations[currentIndex];
+  const { location, weather: { code, description }, temperature, wind } = locations[currentIndex];
 
   return (
     <>
       <Location name={location} />
       <Wind {...wind} />
-      <WeatherIcon iconName={weather} />
+      <WeatherIcon {...{ code, description }} />
       <Temperature {...temperature} />
       <Dots
         locations={locations}
@@ -26,12 +26,12 @@ const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
 };
 
 const Location = ({ name }) => (
-  <div className="location">{name}</div>
+  <div title="location" className="location">{name}</div>
 );
 
-const WeatherIcon = ({ iconName }) => (
-  <div className="weather-icon">
-    <i className={`owf owf-5x owf-${iconName}`} />
+const WeatherIcon = ({ code, description }) => (
+  <div role="img" aria-label={'weather: ' + description} className="weather-icon">
+    <i title={description} className={`owf owf-5x owf-${code}`} />
   </div>
 );
 
