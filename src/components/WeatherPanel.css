@@ -1,9 +1,9 @@
 .location {
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .weather-icon {
   display: flex;
   flex-direction: row;
-  font-size: 24px;
+  font-size: 1.5rem;
 }

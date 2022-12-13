@@ -6,17 +6,17 @@
 
 i.spinner,
 i.spinner::before {
-  width: 48px;
-  height: 48px;
+  width: 5rem;
+  height: 5rem;
 }
 i.spinner::before {
   content: '';
   display: inline-block;
-  border: 6px solid #666666;
+  border: 0.5rem solid #666666;
   border-left-color: transparent;
   border-right-color: transparent;
   border-radius: 50%;
-  animation: rotate 1.0s infinite linear;
+  animation: rotate 1.2s infinite linear;
 }
 
 @keyframes rotate {

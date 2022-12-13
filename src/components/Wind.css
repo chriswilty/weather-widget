@@ -1,24 +1,20 @@
 .wind {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
+	column-gap: 0.5rem;
 }
 
 i.wind-icon {
   display: inline-block;
-  margin-right: 10px;
-  width: 24px;
-  height: 24px;
-  background-image: url('../assets/images/compass_white.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: url('../assets/images/compass_white.png') center/100% no-repeat;
 }
 
 .wind-speed {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 .wind-speed .units {
-  font-size: 12px;
+  font-size: 1rem;
 }

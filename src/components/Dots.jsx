@@ -3,28 +3,20 @@ import React from 'react';
 import './Dots.css';
 
 const Dots = ({ locations, currentIndex, onSelected }) => {
-  const dots = locations.map((loc, index) =>
-    <Dot
-      key={loc.location}
-      index={index}
-      title={loc.location}
-      selected={index === currentIndex}
-      clickHandler={onSelected}
+  const dots = locations.map(({ location }, index) =>
+    <input
+			type="radio"
+			name="locations"
+      key={location}
+      title={location}
+			value={index}
+      checked={index === currentIndex}
+      onChange={() => onSelected(index)}
     />
   );
 
   return (
-    <div className="dots">{dots}</div>
-  )
-};
-
-const Dot = ({ index, selected, title, clickHandler }) => {
-  const handleClick = e => clickHandler(index);
-  const classNames = 'dot-box' + (selected ? ' selected' : '');
-  return (
-    <div className={classNames} title={title} onClick={handleClick}>
-      <div className={"dot"} />
-    </div>
+    <div role="group" aria-label="location selector" className="navigator">{dots}</div>
   )
 };
 
