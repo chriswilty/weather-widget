@@ -6,21 +6,25 @@
   "alias": {
     "components/**": "/src/components/$1",
     "data/**": "/src/data/$1",
-		"hooks/**": "/src/hooks/$1",
-		"services/**": "/src/services/$1",
-		"styles/**": "/src/styles/$1"
+    "hooks/**": "/src/hooks/$1",
+    "services/**": "/src/services/$1",
+    "styles/**": "/src/styles/$1"
   },
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "concurrently \"parcel\" \"rescript build -w\"",
+    "build": "rescript build && parcel build",
+    "clean": "rescript clean -with-deps"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "parcel": "^2.8.1",
-    "process": "^0.11.10"
+    "@rescript/react": "^0.11.0",
+    "concurrently": "^8.0.1",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10",
+    "rescript": "^10.1.4"
   },
   "browserslist": [
     "defaults",
