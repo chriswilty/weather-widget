@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Dots from 'components/Dots';
-import Location from 'components/Location';
+import { make as Location } from 'components/Location.bs';
 import Temperature from 'components/Temperature';
 import WeatherIcon from 'components/WeatherIcon';
 import Wind from 'components/Wind';
