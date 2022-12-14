@@ -4,7 +4,7 @@ import Dots from 'components/Dots';
 import { make as Location } from 'components/Location.bs';
 import { make as Temperature } from 'components/Temperature.bs';
 import { make as WeatherIcon } from 'components/WeatherIcon.bs';
-import Wind from 'components/Wind';
+import { make as Wind } from 'components/Wind.bs';
 
 const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
   const { location, weather: { code, description }, temperature, wind } = locations[currentIndex];
