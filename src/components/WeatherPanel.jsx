@@ -1,13 +1,14 @@
 import React from 'react';
 
-import Dots from 'components/Dots';
+import { make as Navigator } from 'components/Navigator.bs';
 import { make as Location } from 'components/Location.bs';
 import { make as Temperature } from 'components/Temperature.bs';
 import { make as WeatherIcon } from 'components/WeatherIcon.bs';
 import { make as Wind } from 'components/Wind.bs';
 
-const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
-  const { location, weather: { code, description }, temperature, wind } = locations[currentIndex];
+const WeatherPanel = ({ weatherData, currentIndex, setLocation }) => {
+  const { location, weather: { code, description }, temperature, wind } = weatherData[currentIndex];
+  const locations = weatherData.map(({ location }) => location);
 
   return (
     <>
@@ -15,7 +16,7 @@ const WeatherPanel = ({ locations, currentIndex, setLocation }) => {
       <Wind {...wind} />
       <WeatherIcon {...{ code, description }} />
       <Temperature {...temperature} />
-      <Dots
+      <Navigator
         locations={locations}
         currentIndex={currentIndex}
         onSelected={setLocation}
