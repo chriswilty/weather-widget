@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import Loading from 'components/Loading';
-import WeatherPanel from 'components/WeatherPanel';
+
+import { make as WeatherPanel } from 'components/WeatherPanel.bs';
 import { fetchData } from 'services/weatherService';
 
 import 'components/WeatherWidget.css';
@@ -20,12 +21,12 @@ const PAUSE_MILLIS = 2000;
  * TODO Change to use setInterval, and call setCurrentLocation(prev => prev + 1)
  */
 const WeatherWidget = () => {
-  const [ weatherData, setWeatherData ] = useState([]);
+  const [ forecastData, setForecastData ] = useState([]);
   const [ currentLocation, setCurrentLocation ] = useState(null);
 
   useEffect(() => {
     fetchData().then(data => {
-      setWeatherData(data);
+      setForecastData(data);
       setCurrentLocation(0);
     });
   }, []);
@@ -43,17 +44,17 @@ const WeatherWidget = () => {
 
   const incrementLocation = () =>
     currentLocation !== null &&
-    setCurrentLocation((currentLocation + 1) % weatherData.length);
+    setCurrentLocation((currentLocation + 1) % forecastData.length);
 
   const logWithTime = message =>
     console.log(`${new Date().toLocaleTimeString()} ${message}`);
 
   return (
     <div className="weather-widget">
-      { weatherData.length === 0 || currentLocation === null
+      { forecastData.length === 0 || currentLocation === null
         ? <Loading />
         : <WeatherPanel
-            weatherData={weatherData}
+            forecastData={forecastData}
             currentIndex={currentLocation}
             setLocation={setCurrentLocation}
           />
