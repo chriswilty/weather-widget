@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { make as Loading } from 'components/Loading.bs';
 import { make as WeatherPanel } from 'components/WeatherPanel.bs';
-import { fetchData } from 'services/weatherService';
+import { fetchData } from 'services/WeatherService.bs';
 
 import 'components/WeatherWidget.css';
 
