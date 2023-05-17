@@ -1,4 +1,4 @@
-import WeatherWidget from 'components/WeatherWidget';
+import { make as WeatherWidget } from 'components/WeatherWidget.bs';
 
 import './App.css';
 
