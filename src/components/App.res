@@ -1,13 +1,10 @@
-import { make as WeatherWidget } from 'components/WeatherWidget.bs';
+%%raw("import './App.css'")
 
-import './App.css';
-
-const App = () => (
-  <div className="app">
-    <div className="app-content">
-      <WeatherWidget />
-    </div>
-  </div>
-);
-
-export default App;
+@react.component
+let make = () => {
+	<div className="app">
+		<div className="app-content">
+			<WeatherWidget />
+		</div>
+	</div>
+}
